@@ -1,5 +1,5 @@
 import os
-import math
+
 
 def extract_names(repertoire):
     L = []

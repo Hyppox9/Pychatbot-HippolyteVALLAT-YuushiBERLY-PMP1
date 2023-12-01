@@ -1,7 +1,7 @@
 import os
 
 
-def extract_names(repertoire) :
+def extract_names(repertoire):
     L = []
     for fichier in os.listdir(repertoire):
         if "1" in fichier and fichier.removeprefix("Nomination_").removesuffix("1.txt") not in L:

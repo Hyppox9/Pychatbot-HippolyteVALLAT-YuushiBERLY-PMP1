@@ -1,4 +1,5 @@
-print("hello world")
-for i in range(5):
-    print(i)
-'''merge'''
+import Fonctions
+
+Fonctions.extract_names("speeches")
+for e in Fonctions.diconames.values() :
+    print(e)

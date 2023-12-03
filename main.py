@@ -23,8 +23,6 @@ diconames = {"Macron" : "Emmanuel Macron",
              "Mitterrand" : "Francois Mitterrand",
              "Sarkozy" : "Nicolas Sarkozy"}
 
-import os
-
 
 def list_of_files(directory, extension):
     files_names = []

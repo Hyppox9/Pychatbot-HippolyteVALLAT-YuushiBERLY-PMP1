@@ -31,5 +31,5 @@ def propre(repertoire):
             f.write("{}\n".format(txt1[n]))
 
         f.close()
-
+###permet aussi d'écrire dans les fichiers
 propre("speeches")

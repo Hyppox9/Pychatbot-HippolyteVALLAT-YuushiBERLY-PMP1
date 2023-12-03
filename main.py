@@ -31,3 +31,5 @@ def propre(repertoire):
             f.write("{}\n".format(L1[n]))
 
         f.close()
+
+propre("speeches")

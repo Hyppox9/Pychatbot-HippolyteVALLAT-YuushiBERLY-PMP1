@@ -1,18 +1,33 @@
 import os
 
 
-def list_of_files(directory, extension):
-    files_names = []
-    for filename in os.listdir(directory):
-        if filename.endswith(extension):
-            files_names.append(filename)
-    return files_names
+def propre(repertoire):
+    fichiers = []
+    for fichier in os.listdir(repertoire):
+        if fichier.endswith(".txt"):
+            fichiers.append(fichier)
 
+    for j in range(len(fichiers)):
 
-# Call of the function
-directory = "./speeches"
-files_names = list_of_files(directory, "txt")
-print_list(files_names)
+        L1 = []
 
-mintxt = "haha"
-print(mintxt)
+        file = open("{}\\{}".format(repertoire, fichiers[j]), "r", encoding="utf8")
+        lines = file.readlines()
+        for n, line in enumerate(lines):
+            L1.append(str(line).replace("\n", " "))
+        file.close()
+        for i in range(len(L1)):
+            L1[i] = L1[i].replace("'", " ")
+            L1[i] = L1[i].replace(".", "")
+            L1[i] = L1[i].replace(",", "")
+            L1[i] = L1[i].replace(";", "")
+            L1[i] = L1[i].replace("!", "")
+            L1[i] = L1[i].replace("?", "")
+            L1[i] = L1[i].replace("-", " ")
+            L1[i] = L1[i].lower()
+
+        f = open("{}\\{}".format(repertoire, fichiers[j]), "w")
+        for n, line in enumerate(lines):
+            f.write("{}\n".format(L1[n]))
+
+        f.close()

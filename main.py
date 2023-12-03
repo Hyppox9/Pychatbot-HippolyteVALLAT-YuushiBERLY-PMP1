@@ -139,3 +139,8 @@ for i in file:
     files_names[i] = files_names[i].lower()
 #permet de remplacer tout les points, virgule etc par des espaces
 # et de tout mettre en minuscule pour chaque fichier
+
+
+
+#on peut faire un for i in range et open "a" pour crée un nouveau fichier
+#cleaned pour chaque texte.

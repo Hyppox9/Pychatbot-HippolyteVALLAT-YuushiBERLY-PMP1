@@ -26,3 +26,4 @@ for i in range(len(files_names)):
     files_names[i] = files_names[i].lower()
 #permet de remplacer tout les points, virgule etc par des espaces
 # et de tout mettre en minuscule pour chaque fichier
+

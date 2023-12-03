@@ -32,4 +32,5 @@ def propre(repertoire):
 
         f.close()
 ###permet aussi d'écrire dans les fichiers
+
 propre("speeches")

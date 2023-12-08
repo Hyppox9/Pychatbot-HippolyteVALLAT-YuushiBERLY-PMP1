@@ -1,9 +1,4 @@
 import Fonctions
-
-Fonctions.extract_names("speeches")
-for e in Fonctions.diconames.values():
-    print(e)
-
 import os
 
 def extract_names(repertoire):
@@ -27,8 +22,6 @@ diconames = {"Macron" : "Emmanuel Macron",
              "Hollande" : "Francois Hollande",
              "Mitterrand" : "Francois Mitterrand",
              "Sarkozy" : "Nicolas Sarkozy"}
-
-import os
 
 
 def list_of_files(directory, extension):
@@ -139,8 +132,3 @@ for i in file:
     files_names[i] = files_names[i].lower()
 #permet de remplacer tout les points, virgule etc par des espaces
 # et de tout mettre en minuscule pour chaque fichier
-
-
-
-#on peut faire un for i in range et open "a" pour crée un nouveau fichier
-#cleaned pour chaque texte.

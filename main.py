@@ -8,11 +8,9 @@ def propre(repertoire, clean):
         if fichier.endswith(".txt"):
             fichiers.append(fichier)
 
-    # for j in range(len(fichiers)):
     for fichier in fichiers:
         L1 = []
         file_path = os.path.join(repertoire, fichier)
-        # file = open("{}\\{}".format(repertoire, fichiers[j]), "r",encoding="utf8")
         file = open(file_path, "r", encoding="utf8")
 
         lines = file.readlines()
@@ -28,10 +26,6 @@ def propre(repertoire, clean):
             L1[i] = L1[i].replace("?", "")
             L1[i] = L1[i].replace("-", " ")
             L1[i] = L1[i].lower()
-
-        # f = open("{}\\{}".format(clean, fichiers[j]), "w", encoding="utf8")
-        # for n, line in enumerate(lines):
-        #     f.write("{}\n".format(L1[n]))
 
         output_path = os.path.join(clean, fichier)
         with open(output_path, "w", encoding="utf8") as f:

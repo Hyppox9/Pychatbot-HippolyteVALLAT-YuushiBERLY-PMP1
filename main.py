@@ -7,11 +7,12 @@ def propre(repertoire,clean):
             fichiers.append(fichier)
 
 
-
-    for j in range(len(fichiers)):
+    for fichier in fichiers:
 
         L1 = []
-        file = open("{}\\{}".format(repertoire, fichiers[j]), "r",encoding="utf8")
+        file_path = os.path.join(repertoire, fichier)
+        # file = open("{}\{}".format(repertoire, fichiers[j]), "r",encoding="utf8")
+        file = open(file_path, "r", encoding="utf8")
         lines = file.readlines()
         for n, line in enumerate(lines):
             L1.append(str(line).replace("\n", " "))
@@ -26,7 +27,7 @@ def propre(repertoire,clean):
             L1[i] = L1[i].replace("-", " ")
             L1[i] = L1[i].lower()
 
-        f = open("{}\\{}".format(clean, fichiers[j]), "w", encoding="utf8")
+        f = open("{}\\{}".format(clean, fichier), "w", encoding="utf8")
         for n, line in enumerate(lines):
             f.write("{}\n".format(L1[n]))
 

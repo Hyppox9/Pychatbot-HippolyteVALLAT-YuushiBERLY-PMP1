@@ -1,18 +1,18 @@
 import os
-def propre(repertoire,clean):
+
+
+def propre(repertoire, clean):
     matrice_cleaned = []
     fichiers = []
     for fichier in os.listdir(repertoire):
         if fichier.endswith(".txt"):
             fichiers.append(fichier)
 
-
     for fichier in fichiers:
-
         L1 = []
         file_path = os.path.join(repertoire, fichier)
-        # file = open("{}\{}".format(repertoire, fichiers[j]), "r",encoding="utf8")
         file = open(file_path, "r", encoding="utf8")
+
         lines = file.readlines()
         for n, line in enumerate(lines):
             L1.append(str(line).replace("\n", " "))
@@ -27,10 +27,10 @@ def propre(repertoire,clean):
             L1[i] = L1[i].replace("-", " ")
             L1[i] = L1[i].lower()
 
-        f = open("{}\\{}".format(clean, fichier), "w", encoding="utf8")
-        for n, line in enumerate(lines):
-            f.write("{}\n".format(L1[n]))
-
+        output_path = os.path.join(clean, fichier)
+        with open(output_path, "w", encoding="utf8") as f:
+            for line in L1:
+                f.write(f"{line}\n")
 
         L3 = []
         for i in range(len(L1)):
@@ -40,11 +40,9 @@ def propre(repertoire,clean):
         print(L3)
         matrice_cleaned.append(L3)
 
-
         f.close()
     return matrice_cleaned
 
-matricepropre = propre("speeches-20231215","cleaned")
+
+matricepropre = propre("speeches", "cleaned")
 print(matricepropre)
-
-

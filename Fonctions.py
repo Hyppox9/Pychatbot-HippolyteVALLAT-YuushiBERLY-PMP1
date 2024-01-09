@@ -16,7 +16,7 @@ def extract_names(repertoire):
         if L[i] not in L1:
             L1.append(L[i])
     return L1
-
+print(extract_names("speeches"))
 
 
 diconames = {"Macron" : "Emmanuel Macron",

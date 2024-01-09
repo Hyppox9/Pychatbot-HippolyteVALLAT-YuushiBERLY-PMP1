@@ -221,4 +221,4 @@ while sugemenu != 7:
 
 if sugemenu == 7:
     print("bye bye ! :) ")
-    #test
+    #test!

@@ -1,6 +1,6 @@
 import os
 import math
-
+import Fonctions
 def propre(repertoire, clean):
     matrice_cleaned = []
     fichiers = []
@@ -37,7 +37,7 @@ def propre(repertoire, clean):
             L2 = L1[i].split()
             for j in range(len(L2)):
                 L3.append(L2[j])
-        print(L3)
+
         matrice_cleaned.append(L3)
 
         f.close()
@@ -45,11 +45,33 @@ def propre(repertoire, clean):
 
 
 matricepropre = propre("speeches", "cleaned")
-print(matricepropre)
+#print(matricepropre)
 
 
-PATH_CLEANED = "cleaned"
-PATH_SPEECHES = "speeches"
+def extract_names(repertoire):
+    L = []
+    for fichier in os.listdir(repertoire):
+        if "1" in fichier and fichier.removeprefix("Nomination_").removesuffix("1.txt") not in L:
+            L.append(fichier.removeprefix("Nomination_").removesuffix("1.txt"))
+        elif "2" in fichier and fichier.removeprefix("Nomination_").removesuffix("2.txt") not in L:
+            L.append(fichier.removeprefix("Nomination_").removesuffix("2.txt"))
+        elif "1" not in fichier and "2" not in fichier and fichier.removeprefix("Nomination_").removesuffix(
+                ".txt") not in L:
+            L.append(fichier.removeprefix("Nomination_").removesuffix(".txt"))
+    L1 : list.str = []
+    for i in range(len(L)):
+        if L[i] not in L1:
+            L1.append(L[i])
+    return L1
+#print(extract_names("speeches"))
+
+
+diconames = {"Macron" : "Emmanuel Macron",
+             "Chirac" : "Jacques Chirac",
+             "Giscard dEstaing" : "Valerie Giscard dEstaing",
+             "Hollande" : "Francois Hollande",
+             "Mitterrand" : "Francois Mitterrand",
+             "Sarkozy" : "Nicolas Sarkozy"}
 
 
 def TF(fichier: str, repertoire: str) -> dict:
@@ -167,32 +189,35 @@ def max_idf(repertoire: str) -> list:
     return sorted(max_idf)
 
 
-#print(TF("Nomination_Chirac1.txt", PATH_CLEANED))
-#print(IDF(PATH_CLEANED))
-#print(TF_IDF(PATH_CLEANED))
+#print(TF("Nomination_Chirac1.txt", "cleaned"))
+#print(IDF("cleaned"))
+#print(TF_IDF("cleaned"))
 
-#print(max_idf(PATH_CLEANED))
+#print(max_idf("cleaned"))
 
+"""
+le menu sert à executer ce que l'on veut faire
+"""
 
 sugemenu = 0
-print("Choisissez ce que vous voulez faire:",'\n',"1: lister le noms des présidents",'\n',"2: afficher le fichier cleaned",'\n',"3:si vous voulez afficher le TF ",'\n',"4:si vous voulez afficher le IDF ",'\n',"5:si vous voulez afficher le TF-IDF ",'\n',"6:si vous voulez afficher le Max ",'\n',"8: si vous avez fini")
-while sugemenu != 8:
+print("Choisissez ce que vous voulez faire:",'\n',"1: lister le noms des présidents",'\n',"2: afficher le fichier cleaned",'\n',"3: si vous voulez afficher le TF ",'\n',"4: si vous voulez afficher le IDF ",'\n',"5: si vous voulez afficher le TF-IDF ",'\n',"6: si vous voulez afficher le Max ",'\n',"7: si vous avez fini")
+while sugemenu != 7:
     sugemenu = int(input())
     if sugemenu == 1:
-        print("ha")
+        print(extract_names("speeches"))
     if sugemenu == 2:
         print(matricepropre)
     if sugemenu == 3:
         print("quel fichier?")
         chipichipi = input()
-        print(TF(chipichipi, PATH_CLEANED))
+        print(TF(chipichipi, "cleaned"))
     if sugemenu == 4:
-        print(IDF(PATH_CLEANED))
+        print(IDF("cleaned"))
     if sugemenu == 5:
-        print(TF_IDF(PATH_CLEANED))
+        print(TF_IDF("cleaned"))
     if sugemenu == 6:
-        print(max_idf(PATH_CLEANED))
+        print(max_idf("cleaned"))
 
 
-if sugemenu == 8:
+if sugemenu == 7:
     print("bye bye ! :) ")

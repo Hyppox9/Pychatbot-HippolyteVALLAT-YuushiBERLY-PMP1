@@ -1,134 +1,31 @@
 import Fonctions
-import os
 
-def extract_names(repertoire):
-    L = []
-    for fichier in os.listdir(repertoire):
-        if "1" in fichier and fichier.removeprefix("Nomination_").removesuffix("1.txt") not in L:
-            L.append(fichier.removeprefix("Nomination_").removesuffix("1.txt"))
-        elif "2" in fichier and fichier.removeprefix("Nomination_").removesuffix("2.txt") not in L:
-            L.append(fichier.removeprefix("Nomination_").removesuffix("2.txt"))
-        elif "1" not in fichier and "2" not in fichier and fichier.removeprefix("Nomination_").removesuffix(
-                ".txt") not in L:
-            L.append(fichier.removeprefix("Nomination_").removesuffix(".txt"))
-    L1 : list.str = []
-    for i in range(len(L)):
-        if L[i] not in L1:
-            L1.append(L[i])
-    return L1
-diconames = {"Macron" : "Emmanuel Macron",
-             "Chirac" : "Jacques Chirac",
-             "Giscard dEstaing" : "Valerie Giscard dEstaing",
-             "Hollande" : "Francois Hollande",
-             "Mitterrand" : "Francois Mitterrand",
-             "Sarkozy" : "Nicolas Sarkozy"}
+"""
+le menu sert à executer ce que l'on veut faire
+"""
 
+sugemenu = 0
+print("Choisissez ce que vous voulez faire:",'\n',"1 : lister le nom des présidents",'\n',"2 : afficher le dossier cleaned",'\n',"3 : si vous voulez afficher le TF ",'\n',"4 : si vous voulez afficher le IDF ",'\n',"5 : si vous voulez afficher le TF-IDF ",'\n',"6 : si vous voulez afficher le Max IDF ",'\n',"7 : si vous voulez afficher les mots les moins importants",'\n',"8 : si vous avez fini")
 
-def list_of_files(directory, extension):
-    files_names = []
-    for filename in os.listdir(directory):
-        if filename.endswith(extension):
-            files_names.append(filename)
-    #crée une fonction qui permettra de lire directement a partir des fichiers
-    return files_names
+while sugemenu != 8:
+    sugemenu = int(input())
+    if sugemenu == 1:
+        print(Fonctions.extract_names("speeches"))
+    if sugemenu == 2:
+        print(Fonctions.matricepropre)
+    if sugemenu == 3:
+        print("quel fichier?")
+        calvin = input()
+        print(Fonctions.TF(calvin, "cleaned"))
+    if sugemenu == 4:
+        print(Fonctions.IDF("cleaned"))
+    if sugemenu == 5:
+        print(Fonctions.TF_IDF("cleaned"))
+    if sugemenu == 6:
+        print(Fonctions.max_idf("cleaned"))
+    if sugemenu == 7:
+        print(Fonctions.less_important_words("cleaned"))
 
 
-
-directory = "./speeches"
-files_names = list_of_files(directory, "txt")
-print_list(files_names)
-
-
-with open("Nomination_Chirac1.txt", "a",encoding="utf8") as f:
-
-file = f.readlines()
-for i in file:
-    files_names[i] = files_names[i].replace(".", "")
-    files_names[i] = files_names[i].replace(",", "")
-    files_names[i] = files_names[i].replace("'", " ")
-    files_names[i] = files_names[i].replace(";", "")
-    files_names[i] = files_names[i].replace("!", "")
-    files_names[i] = files_names[i].replace("?", "")
-    files_names[i] = files_names[i].replace("-", " ")
-    files_names[i] = files_names[i].lower()
-
-with open("Nomination_Chirac2.txt", "a",encoding="utf8") as f:
-
-file = f.readlines()
-for i in file:
-    files_names[i] = files_names[i].replace(".", "")
-    files_names[i] = files_names[i].replace(",", "")
-    files_names[i] = files_names[i].replace("'", " ")
-    files_names[i] = files_names[i].replace(";", "")
-    files_names[i] = files_names[i].replace("!", "")
-    files_names[i] = files_names[i].replace("?", "")
-    files_names[i] = files_names[i].replace("-", " ")
-    files_names[i] = files_names[i].lower()
-
-
-with open("Nomination_Hollande.txt", "a",encoding="utf8") as f:
-
-file = f.readlines()
-for i in file:
-    files_names[i] = files_names[i].replace(".", "")
-    files_names[i] = files_names[i].replace(",", "")
-    files_names[i] = files_names[i].replace("'", " ")
-    files_names[i] = files_names[i].replace(";", "")
-    files_names[i] = files_names[i].replace("!", "")
-    files_names[i] = files_names[i].replace("?", "")
-    files_names[i] = files_names[i].replace("-", " ")
-    files_names[i] = files_names[i].lower()
-
-with open("Nomination_Macron.txt", "a",encoding="utf8") as f:
-
-file = f.readlines()
-for i in file:
-    files_names[i] = files_names[i].replace(".", "")
-    files_names[i] = files_names[i].replace(",", "")
-    files_names[i] = files_names[i].replace("'", " ")
-    files_names[i] = files_names[i].replace(";", "")
-    files_names[i] = files_names[i].replace("!", "")
-    files_names[i] = files_names[i].replace("?", "")
-    files_names[i] = files_names[i].replace("-", " ")
-    files_names[i] = files_names[i].lower()
-
-with open("Nomination_Mitterrand1.txt", "a",encoding="utf8") as f:
-
-file = f.readlines()
-for i in file:
-    files_names[i] = files_names[i].replace(".", "")
-    files_names[i] = files_names[i].replace(",", "")
-    files_names[i] = files_names[i].replace("'", " ")
-    files_names[i] = files_names[i].replace(";", "")
-    files_names[i] = files_names[i].replace("!", "")
-    files_names[i] = files_names[i].replace("?", "")
-    files_names[i] = files_names[i].replace("-", " ")
-    files_names[i] = files_names[i].lower()
-
-with open("Nomination_Mitterrand2.txt", "a",encoding="utf8") as f:
-
-file = f.readlines()
-for i in file:
-    files_names[i] = files_names[i].replace(".", "")
-    files_names[i] = files_names[i].replace(",", "")
-    files_names[i] = files_names[i].replace("'", " ")
-    files_names[i] = files_names[i].replace(";", "")
-    files_names[i] = files_names[i].replace("!", "")
-    files_names[i] = files_names[i].replace("?", "")
-    files_names[i] = files_names[i].replace("-", " ")
-    files_names[i] = files_names[i].lower()
-
-with open("Nomination_Sarkozy.txt", "a",encoding="utf8") as f:
-
-file = f.readlines()
-for i in file:
-    files_names[i] = files_names[i].replace(".", "")
-    files_names[i] = files_names[i].replace(",", "")
-    files_names[i] = files_names[i].replace("'", " ")
-    files_names[i] = files_names[i].replace(";", "")
-    files_names[i] = files_names[i].replace("!", "")
-    files_names[i] = files_names[i].replace("?", "")
-    files_names[i] = files_names[i].replace("-", " ")
-    files_names[i] = files_names[i].lower()
-#permet de remplacer tout les points, virgule etc par des espaces
-# et de tout mettre en minuscule pour chaque fichier
+if sugemenu == 8:
+    print("bye bye ! :) ")
